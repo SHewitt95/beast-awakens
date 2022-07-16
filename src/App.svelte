@@ -4,7 +4,7 @@
   import BeastStatus from "./lib/BeastStatus.svelte";
   import ResetButton from "./lib/ResetButton.svelte";
   import { MAX_COUNT_VALUE, MIN_COUNT_VALUE, INITIAL_RATE_OF_CHANGE } from "./lib/ReadableStore";
-  import { count, money, gameOver } from "./lib/WritableStore";
+  import { count, money, gameOver, gameStart } from "./lib/WritableStore";
 
   function gameLoop() {
     $count = Math.max(Math.min($count += $INITIAL_RATE_OF_CHANGE, $MAX_COUNT_VALUE), $MIN_COUNT_VALUE);
@@ -14,17 +14,24 @@
     window.requestAnimationFrame(gameLoop)
   }
 
-  window.requestAnimationFrame(gameLoop);
+  function play() {
+    $gameStart = true;
+    window.requestAnimationFrame(gameLoop);
+  }
 </script>
 
 <main>
-  <ProgressBar value={$count} />
-  <BeastStatus />
-  <FluteButton />
-  {#if $gameOver}
-    <ResetButton />
+  {#if !$gameStart}
+    <button on:click="{play}">Play</button>
+  {:else}
+    <ProgressBar value={$count} />
+    <BeastStatus />
+    <FluteButton />
+    {#if $gameOver}
+      <ResetButton />
+    {/if}
+    <p>Money: {$money}</p>
   {/if}
-  <p>Money: {$money}</p>
 </main>
 
 <style>
