@@ -1,28 +1,12 @@
 <script lang="ts">
   import ProgressBar from "./lib/ProgressBar.svelte";
   import FluteButton from "./lib/FluteButton.svelte";
+  import BeastStatus from "./lib/BeastStatus.svelte";
   import { MAX_COUNT_VALUE, MIN_COUNT_VALUE, INITIAL_RATE_OF_CHANGE } from "./lib/ReadableStore";
-  import { count, clickCount, money, gameOver } from "./lib/WritableStore";
-
-  let beastStatus: string = getBeastStatus($count);
-
-  function getBeastStatus(count: number): string {
-    let status: string;
-
-    if (count === $MAX_COUNT_VALUE) {
-      status = "The Beast Awakens!"
-    } else if (count >= 75) {
-      status = "The Beast Stirs...";
-    } else {
-      status = "The Beast Rests.";
-    }
-
-    return status;
-  }
+  import { count, money, gameOver } from "./lib/WritableStore";
 
   function gameLoop() {
     $count = Math.max(Math.min($count += $INITIAL_RATE_OF_CHANGE, $MAX_COUNT_VALUE), $MIN_COUNT_VALUE);
-    beastStatus = getBeastStatus($count);
     if ($count === $MAX_COUNT_VALUE) {
       $gameOver = true;
     }
@@ -34,7 +18,7 @@
 
 <main>
   <ProgressBar value={$count} />
-  <p>{beastStatus}</p>
+  <BeastStatus />
   <FluteButton />
   <p>Money: {$money}</p>
 </main>
