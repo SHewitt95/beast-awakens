@@ -21,6 +21,7 @@
 </script>
 
 <main>
+  <h1>The Beast Awakens!</h1>
   {#if !$gameStart}
     <button on:click="{play}">Play</button>
   {:else}
