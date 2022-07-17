@@ -38,6 +38,7 @@
       <ResetButton />
     {/if}
     <p>Money: {$PlayerStore.money}</p>
+    <PiperPal />
   {/if}
 </main>
 

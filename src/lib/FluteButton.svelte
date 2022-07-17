@@ -4,10 +4,10 @@
   import { PlayerStore } from "./stores/PlayerStore";
 
   $: buttonText = $GameStore.gameOver ? "Game Over!" : "Play Flute";
-  const progressDecrement: number = -5;
+  const progressDecrement: number = 5;
 
   function decrement() {
-    BeastStore.updateProgress(progressDecrement);
+    BeastStore.regressAwaken(progressDecrement);
     PlayerStore.updateNotesPlayed(1);
     PlayerStore.updateMoney($PlayerStore.notesPlayed % 10 === 0 ? 1 : 0);
   }

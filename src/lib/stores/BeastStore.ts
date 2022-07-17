@@ -16,7 +16,12 @@ function createBeastStore() {
     subscribe,
     set,
     reset: () => set(INITIAL_STATE),
-    updateProgress: (val: number) =>
+    regressAwaken: (val: number) =>
+      update((curr) => ({
+        ...curr,
+        awakenProgress: curr.awakenProgress - val,
+      })),
+    progressAwaken: (val: number) =>
       update((curr) => ({
         ...curr,
         awakenProgress: curr.awakenProgress + val,
