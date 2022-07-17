@@ -14,6 +14,12 @@
     disabled={$PlayerStore.money - $PiperPalStore.newPalCost < 0}
     >Piper Pal</button
   >
-  <p>{$PiperPalStore.amountOfPals}</p>
+  <p class="amountOfPals">{$PiperPalStore.amountOfPals}</p>
   <p>Cost: {$PiperPalStore.newPalCost}</p>
 </div>
+
+<style>
+  .amountOfPals {
+    display: inline-block;
+  }
+</style>
