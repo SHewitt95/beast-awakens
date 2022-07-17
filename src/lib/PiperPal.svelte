@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { BeastStore } from "./stores/BeastStore";
   import { PiperPalStore } from "./stores/PiperPalStore";
   import { PlayerStore } from "./stores/PlayerStore";
 
