@@ -7,15 +7,6 @@
     PlayerStore.updateMoney(-$PiperPalStore.newPalCost);
     PiperPalStore.addPiperPal();
   }
-
-  setInterval(() => {
-    let regression =
-      $PiperPalStore.beastRegression * $PiperPalStore.amountOfPals;
-    BeastStore.regressAwaken(regression);
-    PlayerStore.updateNotesPlayed(
-      $PiperPalStore.beastRegression * $PiperPalStore.amountOfPals
-    );
-  }, 1000 * 10);
 </script>
 
 <div>

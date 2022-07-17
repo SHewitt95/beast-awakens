@@ -8,10 +8,27 @@
   import { GameStore } from "./lib/stores/GameStore";
   import { BeastStore } from "./lib/stores/BeastStore";
   import { PlayerStore } from "./lib/stores/PlayerStore";
+  import { PiperPalStore } from "./lib/stores/PiperPalStore";
 
-  function gameLoop() {
+  let start;
+
+  function gameLoop(time: number) {
     if ($GameStore.gameOver) return;
+
+    if (start === undefined) {
+      start = time;
+    }
+
+    let elapsed = time - start;
     BeastStore.stirTheBeast();
+
+    if (elapsed >= 10000) {
+      start = time;
+      let piperPalContribution =
+        $PiperPalStore.beastRegression * $PiperPalStore.amountOfPals;
+      BeastStore.regressAwaken(piperPalContribution);
+      PlayerStore.updateNotesPlayed(piperPalContribution);
+    }
 
     if ($BeastStore.awakenProgress >= MAX_COUNT_VALUE) {
       GameStore.endGame();
