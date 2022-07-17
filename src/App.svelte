@@ -3,6 +3,7 @@
   import FluteButton from "./lib/FluteButton.svelte";
   import BeastStatus from "./lib/BeastStatus.svelte";
   import ResetButton from "./lib/ResetButton.svelte";
+  import PiperPal from "./lib/PiperPal.svelte";
   import {
     MAX_COUNT_VALUE,
     MIN_COUNT_VALUE,
@@ -46,6 +47,7 @@
       <ResetButton />
     {/if}
     <p>Money: {$money}</p>
+    <PiperPal />
   {/if}
 </main>
 
