@@ -4,50 +4,40 @@
   import BeastStatus from "./lib/BeastStatus.svelte";
   import ResetButton from "./lib/ResetButton.svelte";
   import PiperPal from "./lib/PiperPal.svelte";
-  import {
-    MAX_COUNT_VALUE,
-    MIN_COUNT_VALUE,
-    INITIAL_RATE_OF_CHANGE,
-  } from "./lib/ReadableStore";
-  import {
-    count,
-    money,
-    gameOver,
-    gameStart,
-    clickCount,
-  } from "./lib/WritableStore";
+  import { MAX_COUNT_VALUE } from "./lib/stores/Constants";
+  import { GameStore } from "./lib/stores/GameStore";
+  import { BeastStore } from "./lib/stores/BeastStore";
+  import { PlayerStore } from "./lib/stores/PlayerStore";
 
   function gameLoop() {
-    $count = Math.max(
-      Math.min(($count += $INITIAL_RATE_OF_CHANGE), $MAX_COUNT_VALUE),
-      $MIN_COUNT_VALUE
-    );
-    if ($count === $MAX_COUNT_VALUE) {
-      $gameOver = true;
+    if ($GameStore.gameOver) return;
+    BeastStore.stirTheBeast();
+
+    if ($BeastStore.awakenProgress >= MAX_COUNT_VALUE) {
+      GameStore.endGame();
     }
     window.requestAnimationFrame(gameLoop);
   }
 
   function play() {
-    $gameStart = true;
+    GameStore.startGame();
     window.requestAnimationFrame(gameLoop);
   }
 </script>
 
 <main>
   <h1>The Beast Awakens!</h1>
-  {#if !$gameStart}
+  {#if !$GameStore.gameStart}
     <button on:click={play}>Play</button>
   {:else}
-    <ProgressBar value={$count} />
+    <ProgressBar value={$BeastStore.awakenProgress} />
     <BeastStatus />
-    <p>Musical Notes Played: {$clickCount}</p>
+    <p>Musical Notes Played: {$PlayerStore.notesPlayed}</p>
     <FluteButton />
-    {#if $gameOver}
+    {#if $GameStore.gameOver}
       <ResetButton />
     {/if}
-    <p>Money: {$money}</p>
-    <PiperPal />
+    <p>Money: {$PlayerStore.money}</p>
   {/if}
 </main>
 

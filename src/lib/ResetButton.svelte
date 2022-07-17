@@ -1,11 +1,14 @@
 <script lang="ts">
-  import { count, money, gameOver, clickCount } from "./WritableStore";
+  import { BeastStore } from "./stores/BeastStore";
+  import { GameStore } from "./stores/GameStore";
+  import { PiperPalStore } from "./stores/PiperPalStore";
+  import { PlayerStore } from "./stores/PlayerStore";
 
   function reset() {
-    $count = 0;
-    $money = 0;
-    $gameOver = false;
-    $clickCount = 0;
+    GameStore.reset();
+    BeastStore.reset();
+    PiperPalStore.reset();
+    PlayerStore.reset();
   }
 </script>
 

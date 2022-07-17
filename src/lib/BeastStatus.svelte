@@ -1,13 +1,13 @@
 <script lang="ts">
-  import { count } from "./WritableStore";
-  import { MAX_COUNT_VALUE } from "./ReadableStore";
+  import { MAX_COUNT_VALUE } from "./stores/Constants";
+  import { BeastStore } from "./stores/BeastStore";
 
-  $: beastStatus = getBeastStatus($count);
+  $: beastStatus = getBeastStatus($BeastStore.awakenProgress);
 
   function getBeastStatus(count: number): string {
     let status: string;
 
-    if (count === $MAX_COUNT_VALUE) {
+    if (count >= MAX_COUNT_VALUE) {
       status = "The Beast Awakens!";
     } else if (count >= 75) {
       status = "The Beast Stirs...";

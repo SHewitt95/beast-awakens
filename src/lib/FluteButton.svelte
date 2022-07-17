@@ -1,13 +1,17 @@
 <script lang="ts">
-  import { count, clickCount, money, gameOver } from "./WritableStore";
+  import { BeastStore } from "./stores/BeastStore";
+  import { GameStore } from "./stores/GameStore";
+  import { PlayerStore } from "./stores/PlayerStore";
 
-  $: buttonText = $gameOver ? "Game Over!" : "Play Flute";
+  $: buttonText = $GameStore.gameOver ? "Game Over!" : "Play Flute";
+  const progressDecrement: number = -5;
 
   function decrement() {
-    $count -= 5;
-    $clickCount += 1;
-    $money = $clickCount % 10 === 0 ? ($money += 1) : $money;
+    BeastStore.updateProgress(progressDecrement);
+    PlayerStore.updateNotesPlayed(1);
+    PlayerStore.updateMoney($PlayerStore.notesPlayed % 10 === 0 ? 1 : 0);
   }
 </script>
 
-<button disabled={$gameOver} on:click={decrement}>{buttonText}</button>
+<button disabled={$GameStore.gameOver} on:click={decrement}>{buttonText}</button
+>
