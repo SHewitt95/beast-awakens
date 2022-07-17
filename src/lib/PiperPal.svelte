@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { money, count } from "./WritableStore";
+  import { money, count, clickCount } from "./WritableStore";
 
   let cost: number = 2;
   let amount: number = 0;
@@ -16,6 +16,7 @@
   setInterval(() => {
     let newCount = $count - power * amount;
     $count = Math.max(newCount, 0);
+    $clickCount += power * amount;
   }, 1000 * 10);
 </script>
 
