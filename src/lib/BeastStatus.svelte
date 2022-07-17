@@ -8,7 +8,7 @@
     let status: string;
 
     if (count === $MAX_COUNT_VALUE) {
-      status = "The Beast Awakens!"
+      status = "The Beast Awakens!";
     } else if (count >= 75) {
       status = "The Beast Stirs...";
     } else {

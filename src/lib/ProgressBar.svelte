@@ -3,4 +3,4 @@
   export let value: number = 50;
 </script>
 
-<progress max={max} value={value}></progress>
+<progress {max} {value} />
