@@ -8,7 +8,13 @@
     MIN_COUNT_VALUE,
     INITIAL_RATE_OF_CHANGE,
   } from "./lib/ReadableStore";
-  import { count, money, gameOver, gameStart } from "./lib/WritableStore";
+  import {
+    count,
+    money,
+    gameOver,
+    gameStart,
+    clickCount,
+  } from "./lib/WritableStore";
 
   function gameLoop() {
     $count = Math.max(
@@ -34,6 +40,7 @@
   {:else}
     <ProgressBar value={$count} />
     <BeastStatus />
+    <p>Musical Notes Played: {$clickCount}</p>
     <FluteButton />
     {#if $gameOver}
       <ResetButton />
