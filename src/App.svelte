@@ -14,6 +14,7 @@
   let prevNotesPlayed = $PlayerStore.notesPlayed;
 
   $: {
+    // Add money whenever the notesPlayed changed
     if (
       $PlayerStore.notesPlayed > 0 &&
       $PlayerStore.notesPlayed % 10 === 0 &&
