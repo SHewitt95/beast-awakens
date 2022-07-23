@@ -3,7 +3,7 @@
   import FluteButton from "./lib/FluteButton.svelte";
   import BeastStatus from "./lib/BeastStatus.svelte";
   import ResetButton from "./lib/ResetButton.svelte";
-  import PiperPal from "./lib/PiperPal.svelte";
+  import PiperPalButton from "./lib/PiperPalButton.svelte";
   import { MAX_COUNT_VALUE } from "./lib/stores/Constants";
   import { GameStore } from "./lib/stores/GameStore";
   import { BeastStore } from "./lib/stores/BeastStore";
@@ -67,7 +67,7 @@
       <ResetButton />
     {/if}
     <p>Money: {$PlayerStore.money}</p>
-    <PiperPal />
+    <PiperPalButton />
   {/if}
 </main>
 
