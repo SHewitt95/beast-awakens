@@ -11,6 +11,18 @@
   import { PiperPalStore } from "./lib/stores/PiperPalStore";
 
   let start;
+  let prevNotesPlayed = $PlayerStore.notesPlayed;
+
+  $: {
+    if (
+      $PlayerStore.notesPlayed > 0 &&
+      $PlayerStore.notesPlayed % 10 === 0 &&
+      prevNotesPlayed !== $PlayerStore.notesPlayed
+    ) {
+      PlayerStore.addMoney(1);
+      prevNotesPlayed = $PlayerStore.notesPlayed;
+    }
+  }
 
   function gameLoop(time: number) {
     if ($GameStore.gameOver) return;
