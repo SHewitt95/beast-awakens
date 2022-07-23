@@ -12,8 +12,10 @@ function createPlayerStore() {
     subscribe,
     set,
     reset: () => set(INITIAL_STATE),
-    updateMoney: (val: number) =>
+    addMoney: (val: number) =>
       update((curr) => ({ ...curr, money: curr.money + val })),
+    subMoney: (val: number) =>
+      update((curr) => ({ ...curr, money: curr.money - val })),
     updateNotesPlayed: (val: number) =>
       update((curr) => ({ ...curr, notesPlayed: curr.notesPlayed + val })),
   };

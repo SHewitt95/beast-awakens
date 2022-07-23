@@ -9,7 +9,7 @@
   function decrement() {
     BeastStore.regressAwaken(progressDecrement);
     PlayerStore.updateNotesPlayed(1);
-    PlayerStore.updateMoney($PlayerStore.notesPlayed % 10 === 0 ? 1 : 0);
+    PlayerStore.addMoney($PlayerStore.notesPlayed % 10 === 0 ? 1 : 0);
   }
 </script>
 

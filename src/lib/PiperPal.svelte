@@ -3,7 +3,7 @@
   import { PlayerStore } from "./stores/PlayerStore";
 
   function decrement() {
-    PlayerStore.updateMoney(-$PiperPalStore.newPalCost);
+    PlayerStore.subMoney($PiperPalStore.newPalCost);
     PiperPalStore.addPiperPal();
   }
 </script>
