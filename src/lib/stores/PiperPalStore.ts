@@ -2,6 +2,7 @@ import { writable } from "svelte/store";
 
 type PiperPal = {
   id: number;
+  name: string;
   notesPerTick: number;
   payPerNote: number;
   happiness: number;
@@ -27,6 +28,7 @@ function createPiperPalStore() {
   function createPal({ id }): PiperPal {
     return {
       id,
+      name: `Pal ${id}`,
       notesPerTick: 1,
       payPerNote: 1,
       happiness: 1,

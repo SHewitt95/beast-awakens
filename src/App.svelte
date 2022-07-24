@@ -9,6 +9,7 @@
   import { BeastStore } from "./lib/stores/BeastStore";
   import { PlayerStore } from "./lib/stores/PlayerStore";
   import { PiperPalStore } from "./lib/stores/PiperPalStore";
+  import PiperPalViewer from "./lib/PiperPalViewer.svelte";
 
   let start;
   let prevNotesPlayed = $PlayerStore.notesPlayed;
@@ -69,6 +70,7 @@
     {/if}
     <p>Money: {$PlayerStore.money}</p>
     <PiperPalButton />
+    <PiperPalViewer />
   {/if}
 </main>
 
