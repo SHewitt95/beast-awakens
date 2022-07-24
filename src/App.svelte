@@ -18,7 +18,8 @@
     // Add money whenever the notesPlayed changed
     if (
       $PlayerStore.notesPlayed > 0 &&
-      $PlayerStore.notesPlayed % 10 === 0 &&
+      ($PlayerStore.notesPlayed % 10 === 0 ||
+        $PlayerStore.notesPlayed - prevNotesPlayed >= 10) &&
       prevNotesPlayed !== $PlayerStore.notesPlayed
     ) {
       PlayerStore.addMoney(1);
